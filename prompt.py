@@ -15,10 +15,10 @@ def contains_keywords(text):
     return False
 
 
-def prompt(indent,usr_content):
+def prompt(usr_content):
   response = client.chat.completions.create(
-    model = "gpt-3.5-turbo-16k",
-    #model = "gpt-4-1106-preview",
+    # model = "gpt-3.5-turbo-16k",
+    model = "gpt-4-1106-preview",
     # model = "gpt-4",
     # model = "gpt-4-1106-preview",
     messages = [
@@ -41,6 +41,5 @@ def prompt(indent,usr_content):
     result = result.split("\n\n")[1].split("\n")
     if contains_keywords(result[0]):
       result = result[1:]
-    result = [" "*indent+item for item in result]
     result = "\n".join(result) + "\n"
   return result
